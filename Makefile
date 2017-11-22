@@ -10,6 +10,11 @@ help:
 	@echo "Commands:"
 	@echo "  start              Start   docker containers"
 	@echo "  restart            Restart docker containers"
+	@echo "  build              Build docker containers"
+	@echo "  recreate           Recreate docker containers"
+
+start:
+	@docker-compose up -d
 
 build:
 	@docker-compose down --rmi all

@@ -9,3 +9,5 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ 
 ARG UID
 RUN adduser --disabled-password --gecos "" --home /home/dev --uid ${UID} dev > /dev/null
 USER dev
+# change workidir
+WORKDIR /var/www
