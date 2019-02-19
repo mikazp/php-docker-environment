@@ -1,6 +1,9 @@
-FROM php:7.1-fpm
+FROM php:7.2-fpm
 # install xdebug
 RUN pecl install xdebug && docker-php-ext-enable xdebug
+# configure xdebug
+RUN echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini
 # install opcache
 RUN docker-php-ext-install opcache && docker-php-ext-enable opcache
 # install composer

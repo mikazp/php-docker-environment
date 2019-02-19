@@ -12,6 +12,8 @@ help:
 	@echo "  restart            Restart docker containers"
 	@echo "  build              Build docker containers"
 	@echo "  recreate           Recreate docker containers"
+	@echo "  bash               Enter to php container's console"
+	@echo "  root               Enter to php container's console as root user (to install libs etc.)"
 
 start:
 	@docker-compose up -d
@@ -21,10 +23,14 @@ build:
 	@docker-compose build --build-arg UID=$(DEV_UID) $(PHP_SERVICE)
 
 restart:
-	@docker-compose restart
+	@docker-compose stop
+	@docker-compose up -d
 
 bash:
 	@docker-compose exec $(PHP_SERVICE) bash
+	
+root:
+	@docker-compose exec --user root $(PHP_SERVICE) bash
 
 recreate:
 	@docker-compose up -d --force-recreate
